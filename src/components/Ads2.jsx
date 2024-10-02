@@ -1,7 +1,7 @@
 import React from 'react'
-import adsImage from '../assets/ads_2.png';
+import adsImage from '../assets/ads2-img.png';
 
-const Ads_2 = () => {
+const Ads2 = () => {
   return (
  <section className='mb-[128px]'>
  <img className='mx-auto' src={adsImage} alt="" />
@@ -9,4 +9,4 @@ const Ads_2 = () => {
   )
 }
 
-export default Ads_2
+export default Ads2

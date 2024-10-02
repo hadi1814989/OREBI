@@ -5,7 +5,7 @@ import Banner from '../components/Banner'
 import Ads from '../components/Ads'
 import Arrivals from '../components/Arrivals'
 import BestSeller from '../components/BestSeller'
-import Ads_2 from '../components/Ads_2'
+import Ads2 from '../components/Ads2'
 import SpecialOffer from '../components/SpecialOffer'
 
 const Home = () => {
@@ -17,7 +17,7 @@ const Home = () => {
    <Ads />
    <Arrivals />
    <BestSeller />
-   <Ads_2 />
+   <Ads2 />
    <SpecialOffer />
    </>
   )
