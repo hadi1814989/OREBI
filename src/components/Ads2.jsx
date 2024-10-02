@@ -1,5 +1,5 @@
 import React from 'react'
-import adsImage from "../assets/ads2-img.png";
+import adsImage from "../assets/Ads2-img.png";
 
 const Ads2 = () => {
   return (
