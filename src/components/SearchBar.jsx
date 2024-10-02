@@ -1,30 +1,59 @@
-import React, { useState } from 'react'
+import React, {useEffect,  useRef, useState } from 'react'
 import { HiMiniBars3BottomLeft } from "react-icons/hi2";
 import { IoPersonSharp } from "react-icons/io5";
 import { RiArrowDownSFill } from "react-icons/ri";
 import { FaCartShopping } from "react-icons/fa6";
 import { IoSearchSharp } from "react-icons/io5";
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { IoMdArrowDropup } from "react-icons/io";
+// import { IoMdArrowDropup } from "react-icons/io";
 import 'animate.css';
 import cart from "../assets/cart-img.png"
 import { RxCross2 } from "react-icons/rx";
 
 
 const SearchBar = () => {
+  let cateRef = useRef();
+  let cateRef2 = useRef();
+  let cartRef = useRef();
+  let cartRef2 = useRef();
     let [show, setShow]=useState(false)
+    let [show0, setShow0]=useState(false)
     let [show1, setShow1]=useState(false)
-    let [isAnimating, setIsAnimating] = useState(false);
-    let dropMenu = ()=>{
-        setShow(!show)
-    }
+    let [show2, setShow2]=useState(false)
+    
+
+
+    useEffect(()=>{
+      document.addEventListener("click",(e)=>{
+        if(cateRef.current.contains(e.target)){
+          setShow(!show);
+        }else{
+        setShow(false);
+        }
+        if(cateRef2.current.contains(e.target)){
+          setShow0(!show0);
+        }else{
+        setShow0(false);
+        }
+        if(cartRef.current.contains(e.target)){
+        setShow1(!show1)
+        }else{
+          setShow1(false)
+        }
+        if(cartRef2.current.contains(e.target)){
+        setShow2(!show2)
+        }else{
+          setShow2(false)
+        }
+      })
+    },[])
+    // let dropMenu = ()=>{
+    //     setShow(!show)
+    // }
     let dropMenu1 = () => {
       if (!show1) {
         setShow1(!show1)
         setShow1(true);
-        setIsAnimating(true);
-        // Remove animation class after animation ends
-        setTimeout(() => setIsAnimating(false), 2000); // Match this with animation duration
       } else {
         setShow1(false);
       }
@@ -108,9 +137,9 @@ const SearchBar = () => {
         <div className="w-[26%] flex gap-x-9 items-center justify-end">
             <div className="flex gap-1 z-[99]">
             <div className="">   <IoPersonSharp /></div>
-            <div className=" relative" onClick={dropMenu}> 
-                {show == true ? <IoMdArrowDropup /> :<RiArrowDownSFill /> }
-                 <div className=" absolute left-[-157px] top-5 bg-white shadow-md text-[#979797] w-[200px] text-center " 
+            <div ref={cateRef} className=" relative" > 
+              <RiArrowDownSFill />
+                {show && ( <div className=" absolute left-[-157px] top-5 bg-white shadow-md text-[#979797] w-[200px] text-center " 
                  style={{ display: show ? 'block' : 'none' }}>
               <div className="">
               <ul>
@@ -118,19 +147,18 @@ const SearchBar = () => {
                 <li className=' hover:bg-black hover:text-white py-[15px]'>Log Out</li>
                </ul>
               </div>
-            </div>
+            </div>)}
             </div>
             </div>
            
-            <div className="relative z-[777]" onClick={dropMenu1}>
+            <div ref={cartRef} className="relative z-[777]" onClick={dropMenu1}>
               <FaCartShopping />
-            <div
-              className={`absolute right-[30%] ${
-                isAnimating ? 'animate__animated animate__backInLeft' : ''
-              } ${show1 ? 'block' : 'hidden'}`}
-            //  style={{ display: show1 ? 'block' : 'none' }}
+              <div
+             style={{ display: show1 ? 'block' : 'none' }}
+             className=' absolute right-[16%] top-10'
              >
-              <div className="">
+              {show1 && 
+             ( <div className="">
                 <div className="flex bg-[rgba(233,230,230,0.9)] py-4 w-[360px] px-5">
                   <div className=""><img src={cart} alt="" /></div>
                 <div className="">
@@ -149,6 +177,7 @@ const SearchBar = () => {
                  </div>
                 </div>
               </div>
+              )}
              </div>
             </div>
         </div>
@@ -209,28 +238,27 @@ const SearchBar = () => {
         <div className="w-[50%] flex gap-x-6 items-center justify-end">
         <div className="flex gap-1 z-[99]">
             <div className="">   <IoPersonSharp /></div>
-            <div className=" relative" onClick={dropMenu}> 
-                {show == true ? <IoMdArrowDropup /> :<RiArrowDownSFill /> }
-                 <div className=" absolute left-[-157px] top-5 bg-white shadow-md text-[#979797] w-[200px] text-center " 
-                 style={{ display: show ? 'block' : 'none' }}>
+            <div ref={cateRef2} className=" relative" > 
+              <RiArrowDownSFill />
+                {show0 && ( <div className=" absolute left-[-157px] top-5 bg-white shadow-md text-[#979797] w-[200px] text-center " 
+                 style={{ display: show0 ? 'block' : 'none' }}>
               <div className="">
               <ul>
                 <li className=' hover:bg-black hover:text-white py-[15px]'>My Account</li>
                 <li className=' hover:bg-black hover:text-white py-[15px]'>Log Out</li>
                </ul>
               </div>
+            </div>)}
             </div>
             </div>
-            </div>
-            <div className="relative z-[777]" onClick={dropMenu1}>
+            <div ref={cartRef2} className="relative z-[777]" onClick={dropMenu1}>
               <FaCartShopping />
-            <div
-              className={`absolute right-[30%] ${
-                isAnimating ? 'animate__animated animate__backInLeft' : ''
-              } ${show1 ? 'block' : 'hidden'}`}
-            //  style={{ display: show1 ? 'block' : 'none' }}
+              <div
+             style={{ display: show2 ? 'block' : 'none' }}
+             className=' absolute right-[16%] top-10'
              >
-              <div className="">
+               { show2 && 
+             ( <div className="">
                 <div className="flex bg-[rgba(233,230,230,0.9)] py-4 w-[360px] px-5">
                   <div className=""><img src={cart} alt="" /></div>
                 <div className="">
@@ -249,6 +277,7 @@ const SearchBar = () => {
                  </div>
                 </div>
               </div>
+               )}
              </div>
             </div>
         </div>
