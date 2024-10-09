@@ -2,6 +2,7 @@ import React from 'react'
 import "slick-carousel/slick/slick.css";
 import Slider from "react-slick";
 import banImg from "../assets/banner.jpg"
+import { Link } from 'react-router-dom';
 
 const Banner = () => {
   const settings = {
@@ -14,7 +15,7 @@ const Banner = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     appendDots: dots => (
-      <div
+      <div 
         style={{
           padding: "10px",
           position: "absolute",
@@ -27,7 +28,7 @@ const Banner = () => {
       </div>
     ),
     customPaging: i => (
-      <div
+      <div className="cus"
         style={{
           width: "30px",
           color: "transparent",
@@ -50,7 +51,7 @@ const Banner = () => {
           </button>
         </div> */}
         <div className="">
-          <img className='mx-auto' src={banImg} alt="" />
+        <Link to='/shop'><img className='mx-auto' src={banImg} alt="" /></Link>
         </div>
         {/* <div className="bg-back-img bg-cover bg-no-repeat bg-center pt-[167px] pb-[182px]">
           <h2 className='pb-[33px] font-DM font-bold text-[49px] leading-[64px] pl-[120px]'>Final Offer</h2>
@@ -60,7 +61,7 @@ const Banner = () => {
           </button>
         </div> */}
         <div className="">
-          <img className='mx-auto' src={banImg} alt="" />
+        <Link to='/shop'><img className='mx-auto' src={banImg} alt="" /></Link>
         </div>
         {/* <div className="bg-back-img bg-cover bg-no-repeat bg-center pt-[167px] pb-[182px]">
           <h2 className='pb-[33px] font-DM font-bold text-[49px] leading-[64px] pl-[120px]'>Final Offer</h2>
@@ -70,7 +71,7 @@ const Banner = () => {
           </button>
         </div> */}
         <div className="">
-          <img className='mx-auto' src={banImg} alt="" />
+        <Link to='/shop'><img className='mx-auto' src={banImg} alt="" /></Link>
         </div>
         {/* <div className="bg-back-img bg-cover bg-no-repeat bg-center pt-[167px] pb-[182px]">
           <h2 className='pb-[33px] font-DM font-bold text-[49px] leading-[64px] pl-[120px]'>Final Offer</h2>
@@ -80,7 +81,7 @@ const Banner = () => {
           </button>
         </div> */}
         <div className="">
-          <img className='mx-auto' src={banImg} alt="" />
+        <Link to='/shop'><img className='mx-auto' src={banImg} alt="" /></Link>
         </div>
       </Slider>
    </section>

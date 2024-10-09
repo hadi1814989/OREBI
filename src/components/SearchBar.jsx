@@ -240,10 +240,10 @@ const SearchBar = () => {
             <div className="">   <IoPersonSharp /></div>
             <div ref={cateRef2} className=" relative" > 
               <RiArrowDownSFill />
-                {show0 && ( <div className=" absolute left-[-157px] top-5 bg-white shadow-md text-[#979797] w-[200px] text-center " 
+                {show0 && ( <div className=" absolute left-[-137px] top-20 bg-white shadow-md text-[#979797] w-[200px] text-center " 
                  style={{ display: show0 ? 'block' : 'none' }}>
               <div className="">
-              <ul>
+              <ul className='bg-white shadow-md  w-[200px]'>
                 <li className=' hover:bg-black hover:text-white py-[15px]'>My Account</li>
                 <li className=' hover:bg-black hover:text-white py-[15px]'>Log Out</li>
                </ul>
