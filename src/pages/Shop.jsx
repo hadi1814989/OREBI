@@ -3,30 +3,70 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
-import { ApiData } from '../components/Contextapi';
 import { Link } from 'react-router-dom';
-import Arrivals from '../components/Arrivals'
+import Post from '../components/Post';
+import { ApiData } from '../components/Contextapi';
+import Pagination from '../components/Pagination';
+// import Slider from "react-slick";
 
 const Shop = () => {
+  // const settings = {
+  //   dots: true,
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: 1,
+  //   slidesToScroll: 1,
+  //   appendDots: dots => (
+  //     <div
+  //       style={{
+  //         backgroundColor: "#ddd",
+  //         borderRadius: "10px",
+  //         padding: "10px"
+  //       }}
+  //     >
+  //       <ul style={{ margin: "0px" }}> {dots} </ul>
+  //     </div>
+  //   ),
+  //   customPaging: i => (
+  //     <div
+  //       style={{
+  //         width: "30px",
+  //         color: "blue",
+  //         border: "1px blue solid"
+  //       }}
+  //     >
+  //       {i + 1}
+  //     </div>
+  //   )
+  // };
   let {info , loading} = useContext(ApiData)
+  let [currentPage , setCurrentPage] = useState(1)
+  let [perPage , setPerPage] = useState(6)
+  let lastPage = currentPage * perPage
+  let fristPage = lastPage - perPage
+  let allPage = info.slice(fristPage , lastPage)
+  let pageNumber = [];
+  for (let i = 0; i < Math.ceil(info.length / perPage); i++) {
+    pageNumber.push(i);
+  }
   let [show , setShow] = useState(false)
   let [show1 , setShow1] = useState(false)
   let [show2 , setShow2] = useState(false)
   let [show3 , setShow3] = useState(false)
   return (
-<section className='pt-[138px] pb-[126px] hidden lg:block'>
+<section className='xl:pt-[138px] pt-10 pb-[126px] '>
   <div className="max-w-container mx-auto">
     <h2 className='font-DM font-bold text-[49px] text-[#262626]'>Products</h2>
    <div className=" items relative pb-[130px]">
    <span className='font-DM font-normal text-[12px] text-[#767676] pe-[14px]'>Home</span>
-    <span className='font-DM font-normal text-[16px] text-[#767676]  absolute left-[2.2%] top-2'> <MdKeyboardArrowRight />  </span>
+    <span className='font-DM font-normal text-[16px] text-[#767676]  absolute left-[8.2%] sm:left-[4.6%] lg:left-[3.2%] xl:left-[2.2%] top-2'> <MdKeyboardArrowRight />  </span>
     <span className='font-DM font-normal text-[12px] text-[#767676]' >  Products</span>
    </div>
     <div className="flex flex-wrap">
-      <div className="w-1/5">
+      <div className=" ms-2 sm:ms-0 w-full sm:w-1/5">
         <div className="">
         <div onClick={()=> setShow(!show)}  className="flex flex-wrap  justify-between items-center pe-10 pb-[35px]">
-        <h2  className="font-DM font-bold text-[20px] ">Shop by Category</h2>
+        <h2  className="font-DM font-bold text-[20px] text-center sm:text-start ">Shop by Category</h2>
         { show ? <FaMinus/> : <FaPlus/>}
         </div>
           {show && (
@@ -85,8 +125,8 @@ const Shop = () => {
           )}
           </div>
       </div>
-      <div className="w-4/5">
-      <div className="flex flex-wrap justify-end">
+      <div className=" sm:ms-0 ms-2 w-full sm:w-4/5">
+      <div className="flex flex-wrap sm:justify-end">
         <div className="">
           <label className='text-[#767676] pe-5' htmlFor="">Sort By :</label>
           <select className='w-[200px] py-1 border-[#F0F0F0] border-2 rounded text-[#767676] me-10 ' name="" id="">
@@ -97,9 +137,9 @@ const Shop = () => {
             <option value="">Featured</option>
           </select>
         </div>
-        <div className="">
-          <label className='text-[#767676] pe-5' htmlFor="">Show :</label>
-          <select className='w-[100px] py-1 border-[#F0F0F0] border-2 rounded text-[#767676] ' name="" id="">
+        <div className="sm:pt-0 pt-3">
+          <label className='text-[#767676] pe-8  sm:pe-5' htmlFor="">Show :</label>
+          <select className=' w-[200px] sm:w-[100px] py-1 border-[#F0F0F0] border-2 rounded text-[#767676] ' name="" id="">
             <option value="">36</option>
             <option value="">35</option>
             <option value="">34</option>
@@ -109,40 +149,16 @@ const Shop = () => {
         </div>
       
       </div>
-     <div className="flex flex-wrap">
-     <div className="w-[32%]">
-      {loading ? ( <h2 className='text-[40px] font-DM text-center'>loading.....</h2>) :
-       ( <div className=''>
-        {info.map((item) => (
-        <Link to='/shop' ><Arrivals item={item}/></Link>
-
-    ))}
-       </div>
-  )}
-  
+     <div className=" w-full">
+     <div className="w-[100%] flex flex-wrap justify-between ">
+      
+    {loading ? ( <h2 className='text-[40px] font-DM text-center'>loading.....</h2>) :   (
+      <Post allPage={allPage} />
+      )}
       </div>
-     <div className="w-[32%]">
-      {loading ? ( <h2 className='text-[40px] font-DM text-center'>loading.....</h2>) :
-       ( <div className=''>
-        {info.map((item) => (
-        <Link to='/shop' ><Arrivals item={item}/></Link>
-
-    ))}
-       </div>
-  )}
-  
-      </div>
-     <div className="w-[32%]">
-      {loading ? ( <h2 className='text-[40px] font-DM text-center'>loading.....</h2>) :
-       ( <div className=''>
-        {info.map((item) => (
-        <Link to='/shop' ><Arrivals item={item}/></Link>
-
-    ))}
-       </div>
-  )}
-  
-      </div>
+   <div className=" flex justify-center mt-10">
+   <Pagination pageNumber={pageNumber} />
+   </div>
      </div>
       </div>
     </div>
