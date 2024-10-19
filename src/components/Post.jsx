@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import productImg from "../assets/special1.png"
 import { FaHeart } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 import { DiGitCompare } from "react-icons/di";
